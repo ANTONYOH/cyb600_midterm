@@ -9,13 +9,16 @@ jobs:
       - checkout
           run: 
             command: | 
-                # install DumpsterDiver here
-                echo "installing pip and running DumpsterDiver"
+                git clone https://github.com/securing/DumpsterDiver.git        
                 cd DumpsterDiver
                 sudo apt update 
                 sudo apt install python3-pip 
                 pip install -r requirements.txt 
-
+                
+                python3 DumpsterDiver.py -p /home/circleci/spring-rest-helloworld --min-key 40 --max-key 40 --entropy 4.3
+                
+                # install DumpsterDiver here
+                echo "installing pip and running DumpsterDiver"
             name: "dumpster diver"
 
       - setup_remote_docker
